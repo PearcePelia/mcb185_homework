@@ -1,0 +1,14 @@
+Thu Jan 18 21:05:34 PST 2024
+Home /home/pearc
+user pearc
+shell /bin/bash
+pwd /home/pearc/Code/mcb185_homework
+path /usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0:/cygdrive/c/Windows/System32/OpenSSH:/cygdrive/c/Users/pearc/AppData/Local/Microsoft/WindowsApps
+CYGWIN_NT-10.0-19045 DESKTOP-U8CJKKQ 3.4.10-1.x86_64 2023-11-29 12:12 UTC x86_64 Cygwin
+Python 3.9.16
+/home/pearc/Code
+/home/pearc/Code/MCB185
+/home/pearc/Code/MCB185/.git
+/home/pearc/Code/MCB185/data
+/home/pearc/Code/mcb185_homework
+/home/pearc/Code/mcb185_homework/.git

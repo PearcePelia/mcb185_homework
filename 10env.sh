@@ -1,0 +1,5 @@
+echo "Home $HOME"
+echo "user $USER"
+echo "shell $SHELL"
+echo "pwd $PWD"
+echo "path $PATH"
