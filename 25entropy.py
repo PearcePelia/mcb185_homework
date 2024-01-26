@@ -10,15 +10,14 @@ def shannonentropy(a, c, g, t):
 	cprob = c / total
 	gprob = g / total
 	tprob = t / total
-	
-	if aprob <= 0: sys.exit('error: must be greater than 0')
-	aexp = aprob * math.log2(aprob)
-	if cprob <= 0: sys.exit('error: must be greater than 0')
-	cexp = cprob * math.log2(cprob)
-	if gprob <= 0: sys.exit('error: must be greater than 0')
-	gexp = gprob * math.log2(gprob)
-	if tprob <= 0: sys.exit('error: must be greater than 0')
-	texp = tprob * math.log2(tprob)
+	aexp = 0
+	cexp = 0
+	gexp = 0
+	texp = 0 
+	if aprob > 0: aexp = aprob * math.log2(aprob)	
+	if cprob > 0: cexp = cprob * math.log2(cprob)	
+	if gprob > 0: gexp = gprob * math.log2(gprob)	
+	if tprob > 0: texp = tprob * math.log2(tprob)	
 	
 	entropy = -(aexp + cexp + gexp + texp)
 	return entropy
