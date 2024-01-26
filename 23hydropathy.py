@@ -1,6 +1,5 @@
 # 23hydropathy.py by Pearce Pelia done
 
-
 def hydropathy(aa):
 	if aa == 'A': return 1.8
 	if aa == 'C': return 2.5

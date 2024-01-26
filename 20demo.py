@@ -1,4 +1,4 @@
-# 20demo.py by Pearce Pelia
+# 20demo.py by Pearce Pelia done
 
 import math
 

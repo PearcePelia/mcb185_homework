@@ -11,7 +11,7 @@ def shannonentropy(a, c, g, t):
 	gprob = g / total
 	tprob = t / total
 	
-	if aprob <= 0: sys.exit('error: must be greater than')
+	if aprob <= 0: sys.exit('error: must be greater than 0')
 	aexp = aprob * math.log2(aprob)
 	if cprob <= 0: sys.exit('error: must be greater than 0')
 	cexp = cprob * math.log2(cprob)
@@ -26,4 +26,4 @@ def shannonentropy(a, c, g, t):
 print(shannonentropy(1, 2, 3, 4))
 print(shannonentropy(3, 5, 7, 9))
 print(shannonentropy(2, 4, 6, 8))
-print(shannonentropy(0,0,1,0))	#if its zero
+print(shannonentropy(0, 0, 1, 0))	#if its zero
