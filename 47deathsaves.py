@@ -31,8 +31,8 @@ for i in range(limit):
 			if success >= 3:
 				stable += 1
 				break
-print(f'The probability of one dieing, being stable, and revived after {limit} trails is:')				
-print(f'dieing - {die / limit}%')
+print(f'The probability of one dying, being stable, and revived after {limit} trails is:')				
+print(f'dying - {die / limit}%')
 print(f'stable - {stable / limit}%')
 print(f'revive - {revive / limit}%')	
 	
