@@ -1,29 +1,34 @@
-#82transfac by Pearce Pelia 
+#82transfac by Pearce Pelia and CoAuthor Lisa Yuan
 
-import gzip
-import re
-import sys
 import json
+import gzip
+import sys
 
-
-with gzip.open(sys.argv[1], 'rt') as fp:
-	transfac = []
-	record = {}
-	for line in fp:
-		line = line.rstrip()
-		if line.starts('ID'):
-			record['ID'] = line.split()[1]
-		elif line.starts('PO'):
-			record['pwm'] = []
-		elif re.search('\d+', line[0]):
-			num = line.split()[1:]
-			record['pwm'].append({
-				'A': num[0], 
-				'C': num[1], 
-				'G': num[2], 
-				'T': num[3]})
-		elif line.starts('//'):
-			transfac.append(record)
-			record = {}
-
-print(json.dumps(transfac, indent=4))
+def read_file(filepath):
+	records = []
+	with gzip.open(filepath, 'rt') as fp:
+		record = {}
+		pwm_found = False
+		for line in fp:
+			line = line.strip()
+			if line.startswith('XX'): continue
+			elif line.startswith('ID'):
+				record['id'] = line.split()[1]
+			elif line.startswith('PO'):
+				pwm_found = True
+				record['pwm'] = []
+			elif pwm_found and line.startswith(('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')):
+				parts = line.split()
+				record['pwm'].append({'A': float(parts[1]),
+																										'C': float(parts[2]),
+																										'G': float(parts[3]),
+																										'T': float(parts[4])})
+			elif line.startswith('//'):
+				records.append(record)
+				record = {}
+				pwm_found = False
+	return json.dumps(records, indent=4)
+	
+filepath = sys.argv[1]
+output = read_file(filepath)
+print(output)
