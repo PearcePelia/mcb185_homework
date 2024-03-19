@@ -1,4 +1,4 @@
-#90dust.py by Pearce Pelia 
+#90dust.py by Pearce Pelia and CoAuthor Lisa Yuan
 import argparse
 import math
 import mcb185
@@ -16,24 +16,40 @@ print('dusting with', arg.file, arg.size, arg.entropy, arg.lower)
 def entropy_cal(seq):
 	nts = 'ACGT'
 	entropy = 0
+	seq_length = len(seq)
 	for nt in nts:
-		p = seq.count(nt) / len(seq)
+		nt_count = 0
+		for char in seq:
+			if char == nt:
+				nt_count += 1
+		p = nt_count / seq_length
 		if p > 0:
 			entropy += -p * math.log2(p)
 	return entropy
+	
+def to_lower(nt):
+	if nt == 'A': return 'a'
+	if nt == 'C': return 'c'
+	if nt == 'G': return 'g'
+	if nt == 'T': return 't'
+	return nt
+
 
 def mask_seq(seq, w, threshold, soft_mask):
 	seq_list = list(seq)
-		
+	
 	for i in range(len(seq) - w + 1):
 		window = seq[i:i+w]
 		cur_en = entropy_cal(window)
-		if cur_en < threshold and soft_mask:
+		if cur_en < threshold:
 			for j in range(i, i + w):
-				seq_list[j] = seq_list[j].lower()
+				if soft_mask:
+						seq_list[j] = to_lower(seq_list[j])
+				else:
+						seq_list[j] = 'N'
 	return ''.join(seq_list)
 
-for defline, seq in mcb185.read_fasta(sys.argv[1]):
+for defline, seq in mcb185.read_fasta(arg.file):
 	w = arg.size
 	threshold = arg.entropy
 	masked_seq = mask_seq(seq, w, threshold, soft_mask=arg.lower)
