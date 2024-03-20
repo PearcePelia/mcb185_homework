@@ -10,13 +10,13 @@ with gzip.open(sys.argv[1], 'rt') as fp:
 	seqs = False
 	for line in fp:
 		line = line.rstrip()
-		if line.starts('VERSION'):
+		if line.startswith('VERSION'):
 			line = line.split()
 			ac = line[1]
 		elif '/organism=' in line:
 			line =line.replace('"', '').split('=')
 			id = line[1]
-		elif line.starts('CDS'): 
+		elif line.startswith('     CDS'): 
 			if 'join' in line: continue
 			elif 'complement' in line:
 				startidx = line.find('(') + 1
@@ -26,7 +26,7 @@ with gzip.open(sys.argv[1], 'rt') as fp:
 			else:
 				start, stop = line.split()[1].split('..')
 				coords.append((int(start), int(stop), '+'))	
-		elif line.starts('ORIGIN'):
+		elif line.startswith('ORIGIN'):
 			seqs = True
 			continue
 		if seqs:
